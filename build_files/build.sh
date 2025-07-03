@@ -10,7 +10,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # RPMFusion for nonfree packages
-dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+dnf install -y "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 
 packages=() # array of additional packages to install
 
@@ -18,7 +18,7 @@ packages=() # array of additional packages to install
 packages+=(mesa-va-drivers-freeworld)
 
 # basic dev tools
-packages+=(gcc clang flatpak-builder git-lfs java)
+packages+=(gcc clang flatpak-builder git-lfs java rustup bash-language-server)
 
 # VM support
 packages+=(libvirt libvirt-daemon-config-network libvirt-daemon-kvm virt-install qemu-kvm)
@@ -29,7 +29,7 @@ packages+=(fzf htop tailscale wireguard-tools wl-clipboard)
 # install gaming tools
 packages+=(steam mangohud)
 
-dnf install -y ${packages[@]}
+dnf install -y "${packages[@]}"
 
 dnf remove -y toolbox
 dnf autoremove -y
@@ -44,3 +44,4 @@ dnf autoremove -y
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+systemctl disable flatpak-add-fedora-repos.service
