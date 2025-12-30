@@ -26,6 +26,12 @@ packages+=(libvirt libvirt-daemon-config-network libvirt-daemon-kvm virt-install
 # sysadmin tools
 packages+=(fzf htop tailscale wireguard-tools wl-clipboard)
 
+# networking tools
+packages+=(wireguard-tools libnatpmp tailscale nmap)
+
+# streaming tools
+# packages+=(v4l2loopback)
+
 # install gaming tools
 packages+=(steam mangohud)
 
