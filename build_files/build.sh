@@ -18,9 +18,9 @@ packages=() # array of additional packages to install
 packages+=(mesa-va-drivers-freeworld)
 
 # basic dev tools
-packages+=(gcc clang flatpak-builder git-lfs java rustup bash-language-server)
+packages+=(gcc clang flatpak-builder git-lfs java rustup bash-language-server podman-compose)
 
-# VM support
+# VM support (also relies on podman-compose WinBoat)
 packages+=(libvirt libvirt-daemon-config-network libvirt-daemon-kvm virt-install qemu-kvm)
 
 # sysadmin tools
