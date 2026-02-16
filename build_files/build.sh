@@ -33,7 +33,7 @@ packages+=(wireguard-tools libnatpmp tailscale nmap)
 # packages+=(v4l2loopback)
 
 # install gaming tools
-packages+=(steam mangohud)
+packages+=(steam mangohud gamescope)
 
 dnf install -y "${packages[@]}"
 
