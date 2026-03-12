@@ -1,0 +1,3 @@
+[submodule "build_files/material-decoration"]
+	path = build_files/material-decoration
+	url = https://github.com/guiodic/material-decoration

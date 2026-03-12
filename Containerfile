@@ -2,6 +2,17 @@
 FROM scratch AS ctx
 COPY build_files /
 
+# Build image
+FROM ghcr.io/ublue-os/kinoite-main:latest as build
+
+RUN dnf group install -y kde-software-development && \
+    dnf install -y extra-cmake-modules
+RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
+    mkdir /build && \
+    cd /build && \
+    cmake /ctx/material-decoration -DQT_MAJOR_VERSION=6 -DQT_VERSION_MAJOR=6 && \
+    make -j
+
 # Base Image
 FROM ghcr.io/ublue-os/kinoite-main:latest
 
@@ -22,7 +33,9 @@ RUN --mount=type=bind,from=ctx,source=/,target=/ctx \
     --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
     --mount=type=tmpfs,dst=/tmp \
+    --mount=type=bind,from=build,source=/build,target=/build \
     /ctx/build.sh && \
+    make -C /build install && \
     ostree container commit
 
 ### LINTING
