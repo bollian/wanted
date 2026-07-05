@@ -35,6 +35,9 @@ packages+=(wireguard-tools libnatpmp tailscale nmap)
 # install gaming tools
 packages+=(steam mangohud gamescope)
 
+# bugfix for plasma vault
+packages+=(cryfs)
+
 dnf install -y "${packages[@]}"
 
 dnf remove -y toolbox
