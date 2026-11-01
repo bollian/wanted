@@ -38,6 +38,9 @@ packages+=(steam mangohud gamescope)
 # bugfix for plasma vault
 packages+=(cryfs)
 
+# required by Arduino App Lab
+packages+=(webkit2gtk4.1)
+
 dnf install -y "${packages[@]}"
 
 dnf remove -y toolbox
